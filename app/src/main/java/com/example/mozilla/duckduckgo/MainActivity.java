@@ -3,15 +3,17 @@ package com.example.mozilla.duckduckgo;
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.ClipboardManager;
-import android.os.Bundle;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import static com.example.mozilla.duckduckgo.Constants.SEARCH_TERM;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,
         TextView.OnEditorActionListener {
@@ -66,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void performSearch() {
         String term = mEditText.getText().toString();
-        Toast.makeText(this, term, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, ResultsActivity.class);
+        intent.putExtra(SEARCH_TERM, term);
+        startActivity(intent);
     }
 }
